@@ -3,6 +3,7 @@ if (( EUID != 0 )); then
    echo "Error: Must be ran as root user" 1>&2
    exit 100
 fi
+WG=$(wg)
 while getopts ":ahs" option; do
    case $option in
       a) 
@@ -17,16 +18,15 @@ while getopts ":ahs" option; do
    echo "-h           Shows command syntax and other info."
    echo
          exit;;
-           s)    
-   WG=$(wg)
-   if [ -z "$WG" ]
+           s) 
+if [ -z "$WG" ]
 then
-      echo "Error: nothing to do: no active connection" ; exit
+echo "Error: nothing to do: no active connection" && exit
 else
-      :
+systemctl stop wg-quick@wg0.service && echo -e "Stopped!" && exit 0
 fi
 ###
-           systemctl stop wg-quick@wg0.service & wait && echo -e "Stopped!" && exit 0
+
          ;;
      \?) 
          echo "Error: Invalid or unreconized option"
@@ -88,14 +88,9 @@ spinner
 ###
 systemctl start wg-quick@wg0.service 2>/dev/null 
 if [ $? -eq 0 ]; then
-    echo -e "Started:$(systemctl status wg-quick@wg0.service | grep SUCCESS | head 1)" 
+    echo -e "Started:$(systemctl status wg-quick@wg0.service | grep SUCCESS | head -1)" 
 else
     echo -e "Error: $(sudo journalctl -xe | grep "wg-quick@wg0.service has finished with a failure" | tail -1)"
 	systemctl status wg-quick@wg0.service | grep "Main process exited, code=exited, status=1/FAILURE"
 fi
 exit 0
-
-
-
-
-
