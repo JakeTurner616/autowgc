@@ -12,6 +12,8 @@ Syntax: 	 ./autowgc	  [ 	-h  	| -a `<file>` |  -s  	 ]
  
  -a  `<file>`  Add a wireguard client config file or ommit the `<file>` to start an already added connection.
  
+ > EXAMPLE:   ./autowgc -a ~/Wireguard.conf
+ 
  -s           	Stop the wireguard VPN easily.
  
  -h           	Shows command syntax and other info.
