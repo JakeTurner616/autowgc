@@ -1,9 +1,13 @@
 #!/bin/bash
+if (( EUID != 0 )); then
+   echo "Error: Must be ran as root user" 1>&2
+   exit 100
+fi
 while getopts ":ahs" option; do
    case $option in
-      a) #
+      a) 
          ;;
-      h) #
+      h) 
    echo -e "autowgc (Auto wireguard client) - allows for easy managment of a wireguard connection."
    echo
    echo "Syntax: ./autowgc [-h |-a <file>| -s ]"
@@ -13,12 +17,7 @@ while getopts ":ahs" option; do
    echo "-h           Shows command syntax and other info."
    echo
          exit;;
-           s) EXIST=/etc/wireguard/wg0.conf   
-   if test -f "$EXIST"; then
-   :
-   else
-   echo "Error: nothing to do: $EXIST doesn't exist" && exit 0
-   fi
+           s)    
    WG=$(wg)
    if [ -z "$WG" ]
 then
@@ -26,10 +25,10 @@ then
 else
       :
 fi
-
+###
            systemctl stop wg-quick@wg0.service & wait && echo -e "Stopped!" && exit 0
          ;;
-     \?) # incorrect option
+     \?) 
          echo "Error: Invalid or unreconized option"
          exit;;
                  
@@ -47,6 +46,13 @@ then
 else
     cp -r $2 /etc/wireguard/wg0.conf  
 fi
+CONFIG=/etc/wireguard/wg0.conf
+if [ -f "$CONFIG" ]; then
+    :
+else 
+    echo "Error: $CONFIG does not exist." && exit 0
+fi
+###############################
 echo "Starting connection!"
 ###############################
 os_version=$(lsb_release -r |cut -f2)
@@ -63,7 +69,6 @@ if [ "$UFW" = "Status: active" ]; then
 else
 :
 fi
-###spin
 spinner()
 {
     local pid=$!
@@ -80,7 +85,14 @@ spinner()
 }
 (apt-get update > /dev/null && apt-get install openresolv -y > /dev/nulll && apt-get install wireguard -y > /dev/null && apt-get upgrade > /dev/null && wait && cd /etc/wireguard ; umask 077 && wg genkey > private-key && wg pubkey > public-key < private-key) &
 spinner
-systemctl start wg-quick@wg0.service 2>/dev/null & echo -e "Started!"
+###
+systemctl start wg-quick@wg0.service 2>/dev/null 
+if [ $? -eq 0 ]; then
+    echo -e "Started:$(systemctl status wg-quick@wg0.service | grep SUCCESS | head 1)" 
+else
+    echo -e "Error: $(sudo journalctl -xe | grep "wg-quick@wg0.service has finished with a failure" | tail -1)"
+	systemctl status wg-quick@wg0.service | grep "Main process exited, code=exited, status=1/FAILURE"
+fi
 exit 0
 
 
