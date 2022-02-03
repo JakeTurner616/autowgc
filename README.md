@@ -6,7 +6,7 @@ Allows for easy managment of a wireguard connection.
 
 
 
-Syntax: 	 ./autowgc	  [ 	-h  	| -a `<file>` |  -s  	 ]
+Syntax: 	 ./autowgc	  [ 	-h  	| -a `<file>` |  -s  	 ] Where ``<file>` is the location of a valid wireguard config.
 
  flags:
  
