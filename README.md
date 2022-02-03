@@ -6,11 +6,11 @@ Allows for easy managment of a wireguard connection.
 
 
 
-Syntax: 	 ./autowgc	  [ 	-h  	| -a`<file>` |  -s  	 ]
+Syntax: 	 ./autowgc	  [ 	-h  	| -a `<file>` |  -s  	 ]
 
  flags:
  
- -a `<file>`    	Add a wireguard client config file or ommit the `<file>` to start an already     added connection.
+ -a  `<file>`  Add a wireguard client config file or ommit the `<file>` to start an already added connection.
  
  -s           	Stop the wireguard VPN easily.
  
