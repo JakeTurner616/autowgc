@@ -6,13 +6,12 @@ Allows for easy managment of a wireguard connection.
 
 
 
-Syntax: 	 ./autowgc	  [ 	-h  	| -a `<file>` |  -s  	 ] Where ``<file>` is the location of a valid wireguard config.
+Syntax: 	 ./autowgc	  [ 	-h  	| -a `<file>` |  -s  	 ]
 
  flags:
  
  -a  `<file>`  Add a wireguard client config file or ommit the `<file>` to start an already added connection.
- 
- > EXAMPLE:   ./autowgc -a ~/Wireguard.conf
+               '<file>' Should be the location of a valid wireguard config. > EXAMPLE:  ./autowgc -a ~/Wireguard.conf
  
  -s           	Stop the wireguard VPN easily.
  
