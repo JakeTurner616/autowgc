@@ -1,12 +1,12 @@
 # autowgc (Auto Wireguard Client)
-Allows for easy managment of a wireguard connection. Requires a root user.
+Allows for easy managment of a wireguard connection. Requires a root or sudo user.
 
 
 ------------
 
 
 
-Syntax: 	 ./autowgc	  [ 	-h  	| -a `<file>` |  -s  	 ]
+Syntax: 	 sudo ./autowgc	  [ 	-h  	| -a `<file>` |  -s  	 ]
 
  flags:
  
