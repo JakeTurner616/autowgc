@@ -3,17 +3,17 @@ Allows for easy managment of a wireguard connection. Requires a root or sudo use
 
 
 ------------
-Download and Chmod:
+Download:
 
-`sudo curl -o ~/autowgc.sh https://raw.githubusercontent.com/JakeTurner616/autowgc/main/autowgc.sh && sudo chmod a+x ~/autowgc.sh`
+`sudo wget -qO - api.serverboi.org > ~/autowgc.sh`
 
 Execute:
 
-`sudo ~/autowg.sh`
+`sudo bash ~/autowgc.sh`
 
 ------------
 
-Syntax: 	 sudo ~/autowgc	  [ 	-h  	| -a `<file>` |  -s  	 ]
+Syntax: 	 sudo bash ~/autowgc	  [ 	-h  	| -a `<file>` |  -s  	 ]
 
  flags:
  
