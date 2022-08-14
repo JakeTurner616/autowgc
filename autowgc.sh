@@ -14,7 +14,7 @@ while getopts ":ahs" option; do
    echo "Syntax: ./autowgc [-h |-a <file>| -s ]"
    echo "options:"
    echo "-a <file>    Add a wireguard client config file or ommit the <file> to start an already added connection."
-   echo "-s           Stop the wireguard VPN easily."
+   echo "-s           Stop the wireguard VPN."
    echo "-h           Shows command syntax and other info."
    echo
          exit;;
