@@ -13,7 +13,9 @@ Execute:
 
 ------------
 
-Syntax: 	 sudo bash ~/autowgc	  [ 	-h  	| -a `<file>` |  -s  	 ]
+Syntax:
+
+sudo bash ~/autowgc	  [ 	-h  	| -a `<file>` |  -s  	 ]
 
  flags:
  
